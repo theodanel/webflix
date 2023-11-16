@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PresentationController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,47 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        'name' => 'Fiorella',
-        'games' => [
-            'Elden Ring',
-            'Call of Duty',
-            'Flyff',
-            'Wow',
-        ]
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
+  
 
 // {friend} = Paramètre obligatoire
 // {friend?} = Paramètre optionnel
-Route::get('/fiorella/{friend?}', function(Request $request, $friend = null) {
-    return view('presentation', [
-        'age' => Carbon::parse('2019-12-31')->age,
-        'friend' => ucfirst($friend),
-        'color' => $request->color,
-    ]);
-});
+Route::get('/fiorella/{friend?}', [PresentationController::class,  'friend']);
+
+Route::get('/a-propos', [AboutController::class, 'about']);
+ 
 
 
-Route::get('/a-propos', function() {
-    return view('about', [
-        
-            'title' => 'Webflix',
-            'team' => [
-                [
-                'name' => 'Fiorella',
-                'job' => 'CEO',
-                'image' => 'https://i.pravatar.cc/75?u=fiorella',
-                ],
-                [
-                'name' => 'Toto',
-                'job' => 'CTO',
-                'image' => 'https://i.pravatar.cc/75?u=fiorella',
-                ],
-            ]
-            ]);
-            
-});
+Route::get('/a-propos/{user}', [AboutController::class, 'show']);
+
 
 //$request->color = $_GET['color'] ?? null;

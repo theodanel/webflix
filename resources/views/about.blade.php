@@ -8,11 +8,12 @@
 <ul>
 @foreach ($team as $member) 
     <li>
+        <a href="/a-propos/{{ $member['name'] }} ">
         <img src="{{$member['image']}}" alt=""> 
         {{$member['name']}}
-       ({{$member['job']}})
+        ({{$member['job']}})
     </li>
-
+        </a>
     
 @endforeach
 </ul>
