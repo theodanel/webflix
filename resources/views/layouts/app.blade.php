@@ -13,6 +13,7 @@
         <a href="/fiorella/emma">Fiorella et Emma</a>
         <a href="/fiorella/paul">Fiorella et Paul</a>
         <a href="/a-propos">Test</a>
+        <a href="/categories/creer">Créer une catégorie</a>
     </nav>
 
    @yield('content')

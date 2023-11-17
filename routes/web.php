@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PresentationController;
 
@@ -30,5 +31,6 @@ Route::get('/a-propos', [AboutController::class, 'about']);
 
 Route::get('/a-propos/{user}', [AboutController::class, 'show']);
 
-
+Route::get('/categories', [CategoryController::class, 'index']);
+Route::get('/categories/creer', [CategoryController::class, 'create']);
 //$request->color = $_GET['color'] ?? null;
