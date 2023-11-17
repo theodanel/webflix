@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -44,6 +45,16 @@ class AboutController extends Controller
             }
             return view('about-show', [
                 'user'=> $user,
+            ]);
+        }
+        public function showMovie($movie)
+        {
+           $movies = collect($movie->title)->pluck('title')->all();
+            if (! in_array($movie, $movies)) {
+                abort(404); // Renvoie une 404
+            }
+            return view('about-movie', [
+                'movie'=> Movie::all(),
             ]);
         }
     

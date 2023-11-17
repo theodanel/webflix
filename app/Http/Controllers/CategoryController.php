@@ -19,8 +19,23 @@ class CategoryController extends Controller
 
     public function create() 
     {
+
+        return view('categories/create');
+    }
+
+    // Code qui se fait quand on envoie le formulaire
+    public function store(Request $request) 
+    {
+
+        // Validation du champ name. Si aucune erreur, on va dans le save.
+        // S'il y a une erreur, Laravel renvoie vers le form avec les erreurs
+        $request->validate([
+            'name'=>'required|min:3|unique:categories|max:10',
+        ]);
+        // Insertion en base de données
         $category = new Category();
-        $category->name = 'Action';
+        // $request->name est le contenu du input name
+        $category->name = $request->name;
         $category->save(); // INSERT INTO....en Laravel
 
         return redirect('/categories');
